@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Country Information</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          media="print"
+          onload="this.media='all'"
+    >
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+
+    <script async  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-image: url("https://images.unsplash.com/photo-1505761671935-60b3a7427bad?fit=crop&w=500&h=500&q=80&crop=entropy");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+      }
+
+      h1, h2 {
+        color: #4a4a4a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-5">Country Information</h1>
+      <form method="post" class="mt-5">
+        <div class="form-group">
+          <label for="continent">Select a continent:</label>
+          <select name="continent" class="form-control" required>
+            {% for code, name in continents.items() %}
+            <option value="{{ code }}">{{ name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="num_countries">Number of countries to display (2-10):</label>
+          <input type="number" name="num_countries" class="form-control" min="2" max="10" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Information</button>
+      </form>
+
+      {% if country_details %}
+      <h2 class="text-center mt-5">Country Details</h2>
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Population</th>
+            <th>Currency</th>
+            <th>Subregion</th>
+            <th>Languages</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for country in country_details %}
+          <tr>
+            <td>{{ country.name }}</td>
+            <td>{{ country.capital }}</td>
+            <td>{{ country.population }}</td>
+            <td>{{ country.currency }}</td>
+            <td>{{ country.subregion }}</td>
+            <td>{{ country.languages }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </body>
+</html>
