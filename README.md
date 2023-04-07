@@ -18,11 +18,9 @@ This web application allows users to fetch information about countries located i
 ## Installation
 
 1. Clone the repository or download the source code:
-
+```bash
 git clone https://github.com/yourusername/country-information-app.git
-
-bash
-Copy code
+```
 
 2. Create a virtual environment and activate it:
 
